@@ -2,6 +2,9 @@ import { TestBed, async } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 import { of } from 'rxjs';
 import { UserService } from './user.service';
+import { HttpClientModule } from '@angular/common/http';
+import {By} from "@angular/platform-browser";
+
 
 
 const userServiceStub = {
@@ -19,57 +22,9 @@ const userServiceStub = {
         "name": "Ervin Howell",
         "username": "Antonette",
         "email": "Shanna@melissa.tv"
-      },
-      {
-        "id": 3,
-        "name": "Clementine Bauch",
-        "username": "Samantha",
-        "email": "Nathan@yesenia.net"
-      },
-      {
-        "id": 4,
-        "name": "Patricia Lebsack",
-        "username": "Karianne",
-        "email": "Julianne.OConner@kory.org"
-      },
-      {
-        "id": 5,
-        "name": "Chelsey Dietrich",
-        "username": "Kamren",
-        "email": "Lucio_Hettinger@annie.ca"
-      },
-      {
-        "id": 6,
-        "name": "Mrs. Dennis Schulist",
-        "username": "Leopoldo_Corkery",
-        "email": "Karley_Dach@jasper.info"
-      },
-      {
-        "id": 7,
-        "name": "Kurtis Weissnat",
-        "username": "Elwyn.Skiles",
-        "email": "Telly.Hoeger@billy.biz"
-      },
-      {
-        "id": 8,
-        "name": "Nicholas Runolfsdottir V",
-        "username": "Maxime_Nienow",
-        "email": "Sherwood@rosamond.me"
-      },
-      {
-        "id": 9,
-        "name": "Glenna Reichert",
-        "username": "Delphine",
-        "email": "Chaim_McDermott@dana.io"
-      },
-      {
-        "id": 10,
-        "name": "Clementina DuBuque",
-        "username": "Moriah.Stanton",
-        "email": "Rey.Padberg@karina.biz"
       }
     ];
-    //return of( users );
+    return of( users );
   }
 };
 
@@ -79,8 +34,8 @@ describe('AppComponent', () => {
       declarations: [
         AppComponent,
       ],
-      providers: [{provide: UserService, useValue: userServiceStub}]
-    }).compileComponents();
+      providers: [AppComponent, {provide: UserService, useValue: userServiceStub}]
+    });
   });
   it('should create the app', async(() => {
     const fixture = TestBed.createComponent(AppComponent);
@@ -97,5 +52,26 @@ describe('AppComponent', () => {
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
     expect(compiled.querySelector('h1').textContent).toContain('Welcome to angular-testing!');
+  }));
+  it('the size should be equal to 2', async(()=>{
+    const fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.debugElement.componentInstance;
+    app.ngOnInit();
+    fixture.detectChanges();
+    expect(app.users.length).toEqual(2);
+  }));
+  it('the name of first emaployee to be John', async(()=>{
+    const fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.debugElement.componentInstance;
+    app.ngOnInit();
+    expect(app.users[0].username).toEqual('Bret');
+  }));
+
+  it('the to check if therer is a button', async(()=>{
+    const fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.debugElement.componentInstance;
+    app.ngOnInit();
+    expect(fixture.debugElement.queryAll(By.css('button')).length).toEqual(app.users.length);
+   
   }));
 });

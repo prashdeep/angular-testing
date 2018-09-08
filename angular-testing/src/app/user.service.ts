@@ -8,12 +8,12 @@ import {User} from './user';
 })
 export class UserService {
 
-  constructor() { }
+  constructor(private httpClient: HttpClient) { }
 
-  /*getAllUsers():Observable<HttpResponse<User>>{
+  getAllUsers():Observable<HttpResponse<User>>{
     return this.httpClient.get<User>('https://jsonplaceholder.typicode.com/users',{observe:'response'});
-  }*/
+  }
 
-  getAllUsers():void{console.log('came inside the actual service method....')}
+  //getAllUsers():void{console.log('came inside the actual service method....')}
 
 }

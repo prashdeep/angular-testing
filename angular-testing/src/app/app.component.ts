@@ -14,8 +14,13 @@ export class AppComponent implements OnInit{
   constructor(private userService:UserService){this.userService = userService;}
 
   ngOnInit(){
-    
-    this.userService.getAllUsers();
+    this.userService.getAllUsers()
+    .subscribe(response=>{
+      console.log('Hi');
+      console.log(response);
+      this.users = response;
+      console.log(this.users);
+    })
     
   }
 }
