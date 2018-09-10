@@ -14,6 +14,4 @@ export class UserService {
     return this.httpClient.get<User>('https://jsonplaceholder.typicode.com/users',{observe:'response'});
   }
 
-  //getAllUsers():void{console.log('came inside the actual service method....')}
-
 }

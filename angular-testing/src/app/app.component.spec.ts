@@ -5,8 +5,6 @@ import { UserService } from './user.service';
 import { HttpClientModule } from '@angular/common/http';
 import {By} from "@angular/platform-browser";
 
-
-
 const userServiceStub = {
   getAllUsers() {
     console.log('came inside the stub');
@@ -72,6 +70,5 @@ describe('AppComponent', () => {
     const app = fixture.debugElement.componentInstance;
     app.ngOnInit();
     expect(fixture.debugElement.queryAll(By.css('button')).length).toEqual(app.users.length);
-   
   }));
 });
