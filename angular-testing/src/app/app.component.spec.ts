@@ -8,7 +8,8 @@ import {By} from "@angular/platform-browser";
 const userServiceStub = {
   getAllUsers() {
     console.log('came inside the stub');
-    const users = [
+    const users = {
+      "body":[
       {
         "id": 1,
         "name": "Leanne Graham",
@@ -21,7 +22,7 @@ const userServiceStub = {
         "username": "Antonette",
         "email": "Shanna@melissa.tv"
       }
-    ];
+    ]};
     return of( users );
   }
 };
@@ -31,8 +32,8 @@ describe('AppComponent', () => {
     TestBed.configureTestingModule({
       declarations: [
         AppComponent,
-      ],
-      providers: [AppComponent, {provide: UserService, useValue: userServiceStub}]
+      ], 
+      providers: [{provide: UserService, useValue: userServiceStub}]
     });
   });
   it('should create the app', async(() => {

@@ -16,10 +16,7 @@ export class AppComponent implements OnInit{
   ngOnInit(){
     this.userService.getAllUsers()
     .subscribe(response=>{
-      console.log('Hi');
-      console.log(response);
-      this.users = response;
-      console.log(this.users);
+      this.users = response.body;
     })
     
   }
